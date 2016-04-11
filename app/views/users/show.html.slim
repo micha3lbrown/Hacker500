@@ -1,0 +1,22 @@
+p#notice = notice
+
+table
+  thead
+    th id
+    th First Name
+    th Last Name
+    th Email
+    th Password
+    th Created At
+  tbody
+    tr
+      td = @user.id
+      td = @user.first_name
+      td = @user.last_name
+      td = @user.email
+      td = @user.password_digest
+      td = @user.created_at
+
+= link_to 'Edit', edit_user_path(@user)
+'|
+= link_to 'Back', users_path
