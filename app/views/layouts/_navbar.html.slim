@@ -1,21 +1,23 @@
-nav.top-bar data-topbar="" role="navigation"
+nav.top-bar
   ul.title-area
     li.name
       h1
-        a href="#" Hacker500
-    /! Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
-    li.toggle-topbar.menu-icon
-      a href="#"
-        span Menu
+        = link_to 'Hacker500', root_path
   section.top-bar-section
-    /! Right Nav Section
-    ul.right
-      li.active
-        a href="#"  Recent
-      li.has-dropdown
-        a href="#"  Account
-        ul.dropdown
-          li
-            a href="#"  Edit
-          li.active
-            = link_to "Log Out", logout_path, method: :delete
+    ul.nav.pull-right
+      li.dropdown
+        - if user_signed_in?
+          a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown'
+            = current_user.email
+            b.caret
+          ul.dropdown-menu role='menu' aria-labelledby='drop'
+            li = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+            li = link_to 'Edit account', edit_user_registration_path
+
+        - else
+          a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown'
+            = 'Welcome'
+            b.caret
+          ul.dropdown-menu role='menu' aria-labelledby='drop'
+            li = link_to 'Login', new_user_session_path
+            li = link_to 'Sign up', new_user_registration_path

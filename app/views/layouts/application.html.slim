@@ -6,7 +6,8 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = render 'layouts/navbar'
+    = render "layouts/navbar"
     .row
       .large-12.columns
+        = display_flash_messages
         = yield
