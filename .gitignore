@@ -16,4 +16,4 @@
 /log/*
 !/log/.keep
 /tmp
-.byebug
+.byebug_history
