@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
 
+gem 'ruby-hackernews'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

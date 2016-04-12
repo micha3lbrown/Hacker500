@@ -1,0 +1,15 @@
+.row
+  .large-6.columns
+    table.responsive
+      tbody
+        tr
+          td Title:
+          td = @story.title
+        tr
+          td Link:
+          td = link_to(@story.url, @story.url)
+        tr
+          td Points:
+          td = @story.hn_score
+
+  .large-6.columns

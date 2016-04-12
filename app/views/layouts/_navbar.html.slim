@@ -4,20 +4,10 @@ nav.top-bar
       h1
         = link_to 'Hacker500', root_path
   section.top-bar-section
-    ul.nav.pull-right
-      li.dropdown
-        - if user_signed_in?
-          a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown'
-            = current_user.email
-            b.caret
-          ul.dropdown-menu role='menu' aria-labelledby='drop'
-            li = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-            li = link_to 'Edit account', edit_user_registration_path
-
-        - else
-          a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown'
-            = 'Welcome'
-            b.caret
-          ul.dropdown-menu role='menu' aria-labelledby='drop'
-            li = link_to 'Login', new_user_session_path
-            li = link_to 'Sign up', new_user_registration_path
+    ul.right
+      - if user_signed_in?
+        li = link_to 'Account', edit_user_registration_path
+        li = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+      - else
+        li = link_to 'Login', new_user_session_path
+        li = link_to 'Sign up', new_user_registration_path

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412015641) do
+ActiveRecord::Schema.define(version: 20160412163305) do
+
+  create_table "stories", force: :cascade do |t|
+    t.integer  "external_id",  limit: 4,     default: 0,  null: false
+    t.string   "title",        limit: 255,   default: "", null: false
+    t.text     "url",          limit: 65535,              null: false
+    t.integer  "points",       limit: 4,     default: 0
+    t.integer  "hn_score",     limit: 4,     default: 0,  null: false
+    t.integer  "active_group", limit: 4,     default: 0,  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "stories", ["external_id"], name: "index_stories_on_external_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255, default: "", null: false
