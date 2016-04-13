@@ -7,7 +7,7 @@ class Story < ActiveRecord::Base
   acts_as_votable
 
   def self.save_entries_from_hn
-    entries = RubyHackernews::Entry.all(5).drop(10)
+    entries = RubyHackernews::Entry.all(1).drop(10)
     increment = Story.maximum(:active_group) + 1
 
     stories = entries.map do |e|
