@@ -38,6 +38,8 @@ gem 'ruby-hackernews'
 
 gem 'acts_as_votable', '~> 0.10.0'
 
+gem 'pg'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
