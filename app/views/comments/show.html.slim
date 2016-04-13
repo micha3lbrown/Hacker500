@@ -1,0 +1,28 @@
+p#notice = notice
+
+.row
+  .large-12.columns
+    table
+      thead
+        tr
+          td Comment:
+          td
+
+      tbody
+        tr
+          td Id:
+          td = @comment.id
+        tr
+          td Body:
+          td = @comment.body
+        tr
+          td Created:
+          td = @comment.created_at
+
+
+= link_to 'Edit', edit_user_comment_path(id: @comment.id, user_id: current_user)
+'|
+= link_to 'Back', user_comments_path(user_id: current_user)
+'|
+= link_to 'Article', story_path(id: @comment.story_id)
+

@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
-
-  get 'stories/:id', to: 'stories#show', as: 'story'
-  get 'stories', to: 'stories#index'
-  put 'stories/:id/upvote', to: 'stories#upvote', as: 'like_story'
-  put 'stories/:id/downvote', to: 'stories#downvote', as: 'dislike_story'
+  root 'stories#index'
 
   devise_for :users
 
-  root 'stories#index'
+  resources :stories, only: [:index, :show] do
+    member do
+      put 'like', to: 'stories#upvote'
+      put 'dislike', to: 'stories#downvote'
+    end
+  end
+
+  resources :users do
+    resources :comments
+  end
+
+  resources :comments
 
 end

@@ -25,3 +25,18 @@
 
 
   .large-6.columns
+    h3 Comments
+    - @story.comments.each do |comment|
+      .row.comment
+        .large-12.columns
+          .row
+            .large-6.columns
+              strong = comment.user.username
+            .large-6.columns.text-right
+              i = time_ago_in_words(comment.created_at)
+          .row
+            .large-12.columns
+              = comment.body
+    h4 Leave Reply
+    = render 'comments/form'
+    / = link_to 'Tell us what you think', new_user_comment_path(story_id: @story.id, user_id: current_user.id)

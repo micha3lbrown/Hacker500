@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412231326) do
+ActiveRecord::Schema.define(version: 20160413040335) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body",       limit: 65535,             null: false
+    t.integer  "revision",   limit: 4,     default: 0, null: false
+    t.integer  "story_id",   limit: 4,                 null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "user_id",    limit: 4
+  end
 
   create_table "stories", force: :cascade do |t|
     t.integer  "external_id",  limit: 4,     default: 0,  null: false
@@ -27,24 +36,26 @@ ActiveRecord::Schema.define(version: 20160412231326) do
   add_index "stories", ["external_id"], name: "index_stories_on_external_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",             limit: 255, default: "", null: false
-    t.string   "last_name",              limit: 255, default: "", null: false
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "username",               limit: 255, default: "derp", null: false
+    t.string   "first_name",             limit: 255, default: "",     null: false
+    t.string   "last_name",              limit: 255, default: "",     null: false
+    t.string   "email",                  limit: 255, default: "",     null: false
+    t.string   "encrypted_password",     limit: 255, default: "",     null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",   limit: 4
