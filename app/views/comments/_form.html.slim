@@ -5,6 +5,6 @@
       ul
         - @comment.errors.full_messages.each do |message|
           li = message
-
+  = f.hidden_field(:story_id, value: @comment.story_id)
   = f.text_area :body
   .actions = f.submit

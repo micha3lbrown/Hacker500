@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'stories#index'
 
   devise_for :users
 
@@ -14,7 +15,5 @@ Rails.application.routes.draw do
   end
 
   resources :comments
-
-  root 'stories#index'
 
 end
