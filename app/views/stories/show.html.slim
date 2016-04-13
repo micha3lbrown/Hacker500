@@ -1,0 +1,42 @@
+.row
+  .large-6.columns
+    table.responsive
+      tbody
+        tr
+          td Title:
+          td = @story.title
+        tr
+          td Link:
+          td = link_to(@story.url, @story.url)
+        tr
+          td Votes:
+          td
+            | Upvotes: &nbsp
+            = @story.get_upvotes.size
+            br
+            | Downvotes: &nbsp
+            = @story.get_downvotes.size
+        tr
+          td Vote:
+          td
+            = link_to('Upvote', like_story_path(@story.id), method: :put)
+            br
+            = link_to('Downvote', dislike_story_path(@story.id), method: :put)
+
+
+  .large-6.columns
+    h3 Comments
+    - @story.comments.each do |comment|
+      .row.comment
+        .large-12.columns
+          .row
+            .large-6.columns
+              strong = comment.user.username
+            .large-6.columns.text-right
+              i = time_ago_in_words(comment.created_at)
+          .row
+            .large-12.columns
+              = comment.body
+    h4 Leave Reply
+    = render 'comments/form'
+    / = link_to 'Tell us what you think', new_user_comment_path(story_id: @story.id, user_id: current_user.id)

@@ -1,0 +1,21 @@
+.row
+  .large-12.columns
+    h1 Trending
+.row
+  .large-12.columns
+    table
+      thead
+        tr
+          th id
+          th External ID
+          th Article
+          th Hacker500 Score
+          th HN Score
+      tbody
+        - @stories.each do |s|
+          tr
+            td = s.id
+            td = s.external_id
+            td = link_to(s.title, story_path(s.id))
+            td = s.points
+            td = s.hn_score
