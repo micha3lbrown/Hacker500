@@ -1,8 +1,8 @@
 class StoriesController < ApplicationController
   def index
-    Rails.cache.fetch("hn_data", expires_in: 5.minutes) do
+    # Rails.cache.fetch("hn_data", expires_in: 5.minutes) do
       Story.save_entries_from_hn
-    end
+    # end
     increment = Story.maximum(:active_group)
     @stories = Story.where(active_group: increment)
   end
