@@ -9,7 +9,19 @@
           td Link:
           td = link_to(@story.url, @story.url)
         tr
-          td Points:
-          td = @story.hn_score
+          td Votes:
+          td
+            | Upvotes: &nbsp
+            = @story.get_upvotes.size
+            br
+            | Downvotes: &nbsp
+            = @story.get_downvotes.size
+        tr
+          td Vote:
+          td
+            = link_to('Upvote', like_story_path(@story.id), method: :put)
+            br
+            = link_to('Downvote', dislike_story_path(@story.id), method: :put)
+
 
   .large-6.columns
