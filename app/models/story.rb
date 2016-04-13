@@ -4,6 +4,7 @@ class Story < ActiveRecord::Base
   include RubyHackernews
   has_many :comments, dependent: :destroy
   validates :external_id, presence: true
+  acts_as_votable
 
   def self.save_entries_from_hn
     entries = RubyHackernews::Entry.all(17).drop(10)
