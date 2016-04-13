@@ -25,3 +25,17 @@
 
 
   .large-6.columns
+    h3 Comments
+    - @story.comments.each do |comment|
+      .row.comment
+        .large-12.columns
+          .row
+            .large-6.columns
+              strong = comment.user.username
+            .large-6.columns.text-right
+              i = time_ago_in_words(comment.created_at)
+          .row
+            .large-12.columns
+              = comment.body
+    h3 Leave reply
+    = render "comments/form", object: @comment
