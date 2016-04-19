@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413040335) do
+ActiveRecord::Schema.define(version: 20160418182800) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",       limit: 65535,             null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160413040335) do
     t.text     "url",          limit: 65535,              null: false
     t.integer  "points",       limit: 4,     default: 0
     t.integer  "hn_score",     limit: 4,     default: 0,  null: false
+    t.integer  "hn_rank",      limit: 4
     t.integer  "active_group", limit: 4,     default: 0,  null: false
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
