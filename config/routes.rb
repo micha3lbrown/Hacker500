@@ -1,3 +1,5 @@
+require 'resque/server'
+
 Rails.application.routes.draw do
   root 'stories#index'
 
@@ -15,5 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments
+
+  mount Resque::Server.new, at: "/resque"
 
 end

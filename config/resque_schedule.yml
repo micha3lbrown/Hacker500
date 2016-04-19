@@ -1,0 +1,6 @@
+save_entries:
+  every:
+    - "60s"
+  class: "FetchStories"
+  queue: save_entries
+  description: "FetchStories from Hacker News API"
