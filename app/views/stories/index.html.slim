@@ -6,16 +6,14 @@
     table
       thead
         tr
-          th id
-          th External ID
+          th #
           th Article
           th Hacker500 Score
           th HN Score
       tbody
-        - @stories.each do |s|
+        - @stories.each_with_index do |s, i|
           tr
-            td = s.id
-            td = s.external_id
+            td = i + 1
             td = link_to(s.title, story_path(s.id))
             td = s.points
             td = s.hn_score

@@ -1,6 +1,7 @@
 save_entries:
   every:
-    - "60s"
+    - "5m"
+    - :first_in: '5s'
   class: "FetchStories"
   queue: save_entries
   description: "FetchStories from Hacker News API"

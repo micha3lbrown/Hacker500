@@ -7,7 +7,7 @@
           td = @story.title
         tr
           td Link:
-          td = link_to(@story.url, @story.url)
+          td = link_to(@story.url, @story.url, target: '_blank')
         tr
           td Votes:
           td
@@ -25,7 +25,6 @@
 
 
   .large-6.columns
-    h3 Comments
     - @story.comments.each do |comment|
       .row.comment
         .large-12.columns
