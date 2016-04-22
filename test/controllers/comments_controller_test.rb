@@ -1,6 +1,9 @@
 require 'test_helper'
+require 'byebug'
 
 class CommentsControllerTest < ActionController::TestCase
+  fixtures :all
+
   setup do
     @comment = comments(:one)
   end

@@ -8,7 +8,7 @@ class Story < ActiveRecord::Base
 
   def self.save_entries_from_hn
     entries = RubyHackernews::Entry.all(17)
-    increment = Story.maximum(:active_group) + 1
+    increment = Story.maximum(:active_group).to_i + 1
 
     stories = entries.each_with_index do |e,i|
       s = Story.find_or_initialize_by(external_id: e.id)
@@ -20,6 +20,5 @@ class Story < ActiveRecord::Base
       s.hn_rank = i
       s.save
     end
-
   end
 end
